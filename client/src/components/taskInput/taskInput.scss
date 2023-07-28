@@ -1,0 +1,145 @@
+@import "../../App.scss";
+
+.input-wrapper {
+  padding-right: 9rem;
+  width: 30vw;
+
+  @include tablet {
+    width: 100vw;
+    height: 0;
+  }
+
+  .add-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    button {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.4rem;
+      border: none;
+      outline: none;
+      border-radius: 50%;
+      background-color: var(--btn-primary-color);
+      color: var(--btn-txt-color);
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(75%);
+      }
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 1.8rem;
+
+      @include mobile {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .input-box {
+    min-width: 19rem;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.5rem;
+    background-color: var(--primary-bg-color);
+    border-radius: 0.8rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .form-input {
+        width: 80%;
+        height: 3rem;
+        outline: none;
+        border: none;
+        background-color: var(--primary-bg-color);
+        border-radius: 0.3rem;
+        padding: 0.3rem;
+        text-indent: 0.7rem;
+        margin-bottom: 0.7rem;
+      }
+
+      .close-icon {
+        position: absolute;
+        right: 1rem;
+        top: 0.7rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        color: var(--btn-txt-color);
+        border-radius: 0.3rem;
+        cursor: pointer;
+
+        &:hover {
+          filter: contrast(75%);
+        }
+      }
+
+      .select-wrapper {
+        display: flex;
+        align-items: center;
+        margin: 0.7rem 0.8rem;
+
+        label {
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+
+        select {
+          width: 8rem;
+          outline: none;
+          border: none;
+          background-color: var(--primary-bg-color);
+          margin: 0.7rem 0.8rem;
+          cursor: pointer;
+        }
+      }
+
+      .date-wrapper {
+        display: flex;
+        align-items: center;
+        margin: 0.7rem 0.8rem;
+
+        label {
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+
+        .date-input {
+          width: 8rem;
+          outline: none;
+          border: none;
+          background-color: var(--primary-bg-color);
+          margin: 0.7rem 0.8rem;
+          cursor: pointer;
+        }
+      }
+
+      button {
+        width: 150px;
+        height: 45px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: var(--btn-primary-color);
+        margin: 0.7rem 0.8rem;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+
+      .send-icon {
+        color: var(--btn-txt-color);
+      }
+    }
+  }
+}

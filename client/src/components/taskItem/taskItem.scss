@@ -1,0 +1,18 @@
+@import "../../App.scss";
+
+.task-item {
+  .task-desc {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include tablet {
+      max-width: 7.5rem;
+    }
+  }
+  .delete-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}

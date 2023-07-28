@@ -1,0 +1,12 @@
+@import "../../App.scss";
+
+.date {
+  .formatted-date {
+    font-size: 1rem;
+    margin-top: 1rem;
+
+    @include tablet {
+      font-size: 0.8rem;
+    }
+  }
+}

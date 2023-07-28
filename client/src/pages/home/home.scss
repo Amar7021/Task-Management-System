@@ -1,0 +1,93 @@
+@import "../../App.scss";
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin: 150px 50px 80px 50px;
+
+    @include mobile {
+      margin: 120px 50px 30px 50px;
+      flex-direction: column;
+    }
+
+    .right {
+      img {
+        width: 494px;
+        height: 609px;
+        border-radius: 10px;
+
+        @include mobile {
+          width: 273px;
+          height: 283px;
+        }
+      }
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      margin-left: 70px;
+
+      @include mobile {
+        margin-left: 10px;
+        align-items: center;
+      }
+
+      .top-left {
+        p {
+          margin: 20px 0;
+        }
+
+        @include mobile {
+          display: none;
+        }
+      }
+
+      .welcome-box {
+        margin-top: 200px;
+
+        @include mobile {
+          margin-top: 50px;
+        }
+
+        h2 {
+          font-size: 32px;
+          font-weight: normal;
+          margin-bottom: 30px;
+        }
+
+        .buttons {
+          @include mobile {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+          }
+
+          .btn {
+            width: 100px;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            padding: 5px;
+            color: var(--nav-txt-color);
+            background-color: var(--btn-primary-color);
+            cursor: pointer;
+            margin-right: 20px;
+
+            @include mobile {
+              margin: 0 0 20px 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

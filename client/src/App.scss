@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  --primary-bg-color: rgb(189, 189, 189);
+  --primary-txt-color: rgb(0, 0, 0);
+  --nav-primary-color: rgb(0, 0, 0);
+  --nav-txt-color: rgb(255, 255, 255);
+  --hover-primary-color: rgb(189, 189, 189);
+  --hover-secondary-color: rgb(255, 255, 255);
+  --btn-primary-color: rgb(228, 58, 55);
+  --btn-txt-color: rgb(255, 255, 255);
+}
+
+body {
+  background-color: var(--primary-bg-color);
+  font-size: 1rem;
+}
+
+// breakpoints
+@mixin tablet {
+  @media (max-width: 765px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
