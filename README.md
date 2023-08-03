@@ -36,15 +36,14 @@ To get a local copy up and running follow these simple steps.
 - Clone the repository
 
 ```
-git clone https://github.com/Amar7021/fullstack-mern-netflix-clone-2023.git
+git clone https://github.com/Amar7021/Task-Management-System.git
 ```
 
 - Install NPM packages
 
 ```
-cd fullstack-mern-netflix-clone-2023
 cd server
-npm install  // to install API dependencies
+npm install  // to install server dependencies
 cd ..
 cd client
 npm install  // to install client dependencies
