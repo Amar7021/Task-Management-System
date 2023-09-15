@@ -1,21 +1,9 @@
-import Navbar from "../../components/common/navbar/Navbar"
-import Footer from "../../components/common/footer/Footer"
 import { useFormik } from "formik"
-import * as Yup from "yup"
+import { signInSchema } from "../../schemas/authSchema"
 import { AuthContext } from "../../context/authContext/AuthContext"
 import { useContext } from "react"
 import { loginUser } from "../../context/authContext/apiCalls"
 import "./signIn.scss"
-
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("Invalid email address!")
-    .required("Email is required!"),
-  password: Yup.string()
-    .min(8, "Password must be at least 8 characters!")
-    .max(20, "Password must be 8 to 20 characters!")
-    .required("Password is required!"),
-})
 
 const SignIn = () => {
   const { dispatch } = useContext(AuthContext)
@@ -38,15 +26,15 @@ const SignIn = () => {
       email: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: signInSchema,
     onSubmit,
   })
 
   return (
     <div className="signIn">
-      <Navbar />
       <div className="container">
         <div className="form-container">
+          <h2 className="signin-header">Sign in</h2>
           <form onSubmit={handleSubmit}>
             <input
               name="email"
@@ -89,9 +77,6 @@ const SignIn = () => {
             </div>
           </form>
         </div>
-      </div>
-      <div className="footer">
-        <Footer />
       </div>
     </div>
   )

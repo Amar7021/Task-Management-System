@@ -4,10 +4,8 @@ const { signUpUser, signInUser } = require("../controllers/authController")
 // Router
 const router = express.Router()
 
-// Signup a user
-router.post("/signup", signUpUser)
-
-// Signin a user
-router.post("/signin", signInUser)
+// Post Methods
+router.post("/signup", signUpUser) // Signup a user
+router.post("/signin", signInUser) // Signin a user
 
 module.exports = router

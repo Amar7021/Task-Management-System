@@ -1,5 +1,3 @@
-import Footer from "../../components/common/footer/Footer"
-import Navbar from "../../components/common/navbar/Navbar"
 import image from "../../assets/note-cover-img.avif"
 import { useNavigate } from "react-router-dom"
 import "./home.scss"
@@ -9,7 +7,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Navbar />
       <div className="container">
         <div className="right">
           <img
@@ -47,9 +44,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="footer">
-        <Footer />
       </div>
     </div>
   )

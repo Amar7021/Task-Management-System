@@ -1,49 +1,50 @@
-import React, { useContext } from "react"
 import TodaysDate from "../date/Date"
-import { TaskContext } from "../../context/taskContext/TaskContext"
 import { Send, Close } from "@mui/icons-material"
+import { useState } from "react"
+import axios from "../../services/helper"
+import { toast } from "react-toastify"
 import "./taskInput.scss"
 
-const TaskInput = () => {
-  const {
-    title,
-    setTitle,
-    description,
-    setDescription,
-    selectedStatus,
-    setSelectedStatus,
-    selectedDueDate,
-    setSelectedDueDate,
-    show,
-    setShow,
-    addTask,
-  } = useContext(TaskContext)
+const initialData = {
+  title: "",
+  description: "",
+  status: "Not Started",
+  dueDate: "",
+}
 
+const TaskInput = ({ setTasks }) => {
+  const [formData, setFormData] = useState(initialData)
+  const [show, setShow] = useState(false)
+
+  // handle form change
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({ ...prevData, [name]: value }))
+  }
+
+  // handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await addTask({
-        title,
-        description,
-        dueDate: selectedDueDate,
-        status: selectedStatus,
+      const res = await axios.post("/task/addtask", formData, {
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+        },
       })
-
-      setTitle("")
-      setDescription("")
-      setSelectedStatus("Not Started")
-      setSelectedDueDate("")
-
-      setShow(false)
+      setTasks((prevData) => [...prevData, res.data])
+      setFormData(initialData)
+      toast.success("Added a task successfully", {
+        position: "top-center",
+        autoClose: 2500,
+      })
     } catch (error) {
-      console.log("Error adding a task:", error)
+      console.log(error)
+      toast.error("Error adding task. Please try again later.", {
+        position: "top-center",
+        autoClose: 2500,
+      })
     }
   }
-  const isSaveButtonDisabled = !(
-    title.trim() &&
-    description.trim() &&
-    selectedDueDate
-  )
 
   return (
     <div className="input-wrapper">
@@ -61,14 +62,15 @@ const TaskInput = () => {
         <div className="input-box">
           <form onSubmit={handleSubmit}>
             <input
+              name="title"
               className="form-input"
               type="text"
-              minLength={5}
               required
               placeholder="Title"
-              maxLength={20}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              minLength={5}
+              maxLength={12}
+              value={formData.title}
+              onChange={handleChange}
             />
             <Close
               title="Close (Escape)"
@@ -76,21 +78,23 @@ const TaskInput = () => {
               onClick={() => setShow(!show)}
             />
             <input
+              name="description"
               className="form-input"
               type="text"
-              minLength={5}
               required
               placeholder="Description"
+              minLength={5}
               maxLength={60}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={formData.description}
+              onChange={handleChange}
             />
             <div className="select-wrapper">
-              <label htmlFor="dueDate">Status:</label>
+              <label htmlFor="status">Status:</label>
               <select
                 id="status"
-                value={selectedStatus}
-                onChange={(e) => setSelectedStatus(e.target.value)}
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
               >
                 <option value="Not Started">Not Started</option>
                 <option value="In Progress">In Progress</option>
@@ -102,19 +106,17 @@ const TaskInput = () => {
             <div className="date-wrapper">
               <label htmlFor="dueDate">Due Date:</label>
               <input
+                name="dueDate"
                 className="date-input"
                 type="date"
                 id="dueDate"
-                value={selectedDueDate}
                 min={new Date().toISOString().split("T")[0]}
                 required
-                onChange={(e) => setSelectedDueDate(e.target.value)}
+                value={formData.dueDate}
+                onChange={handleChange}
               />
             </div>
-            <button
-              type="submit"
-              disabled={isSaveButtonDisabled}
-            >
+            <button type="submit">
               <Send className="send-icon" />
             </button>
           </form>

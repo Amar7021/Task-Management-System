@@ -4,20 +4,20 @@ const jwt = require("jsonwebtoken")
 
 // SignUp a user
 const signUpUser = async (req, res) => {
-  try {
-    const { username, email, password } = req.body
+  const { username, email, password } = req.body
 
+  try {
     // validator
     if (!username || !email || !password) {
       return res.status(400).json({ error: "All fields must be filled" })
     }
 
     // check if username already exists
-    const existingUser = await User.findOne({ username })
-    if (existingUser) {
+    const existingUsername = await User.findOne({ username })
+    if (existingUsername) {
       return res
         .status(401)
-        .json({ error: "Email or Username is already in use!" })
+        .json({ error: "Email or Username already exists!" })
     }
 
     // check if email already exists
@@ -25,7 +25,7 @@ const signUpUser = async (req, res) => {
     if (existingEmail) {
       return res
         .status(401)
-        .json({ error: "Email or Username is already in use!" })
+        .json({ error: "Email or Username already exists!" })
     }
 
     // hash the password before saving to database
@@ -43,23 +43,23 @@ const signUpUser = async (req, res) => {
       },
     }
     const authToken = jwt.sign(data, process.env.SECRET_KEY)
-    res.status(201).json(authToken)
+    res.status(200).json(authToken)
   } catch (error) {
     res.status(500).json({ error: error.message })
   }
 }
 
 // SignIn a user
-
 const signInUser = async (req, res) => {
-  try {
-    const { email, password } = req.body
+  const { email, password } = req.body
 
+  try {
     // validator
     if (!email || !password) {
       res.status(400).json({ error: "All fields must be filled" })
     }
 
+    // check if email already exists
     const user = await User.findOne({ email })
     if (!user) {
       return res
@@ -82,9 +82,9 @@ const signInUser = async (req, res) => {
       },
     }
     const authToken = jwt.sign(data, process.env.SECRET_KEY)
-    res.status(201).json(authToken)
+    res.status(200).json(authToken)
   } catch (error) {
-    res.status(500).json({ error: error.message })
+    return res.status(500).json({ error: error.message })
   }
 }
 

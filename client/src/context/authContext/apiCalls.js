@@ -1,5 +1,5 @@
 import { toast } from "react-toastify"
-import axios from "../../api/axios"
+import axios from "../../services/helper"
 import { loginFail, loginStart, loginSuccess, logout } from "./AuthActions"
 
 export const loginUser = async (user, dispatch) => {
@@ -9,7 +9,6 @@ export const loginUser = async (user, dispatch) => {
     const token = res.data
     dispatch(loginSuccess(token))
     localStorage.setItem("token", token)
-    console.log("Token: ", token)
     toast.success("Login Successful!", {
       position: "bottom-right",
       autoClose: 3000,

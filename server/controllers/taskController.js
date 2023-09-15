@@ -3,7 +3,7 @@ const Task = require("../models/taskModel")
 // Controller for creating a new task
 const createTask = async (req, res) => {
   try {
-    const { title, description, dueDate } = req.body
+    const { title, description, dueDate, status } = req.body
     const userId = req.user.id
 
     const newTask = new Task({
@@ -11,11 +11,12 @@ const createTask = async (req, res) => {
       title,
       description,
       dueDate,
+      status,
     })
 
     await newTask.save()
 
-    res.status(201).json(newTask)
+    res.status(200).json(newTask)
   } catch (err) {
     res.status(500).json({ error: "Failed to create a new task" })
   }
@@ -37,9 +38,9 @@ const getAllTasks = async (req, res) => {
 // Controller for retrieving a specific task by its ID
 const getTaskById = async (req, res) => {
   try {
-    const taskId = req.params.id
+    const { id } = req.params
 
-    const task = await Task.findById(taskId)
+    const task = await Task.findById({ _id: id })
 
     if (!task) {
       return res.status(404).json({ error: "Task not found" })

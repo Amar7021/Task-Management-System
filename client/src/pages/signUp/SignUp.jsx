@@ -1,25 +1,9 @@
-import Navbar from "../../components/common/navbar/Navbar"
-import Footer from "../../components/common/footer/Footer"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
-import axios from "../../api/axios"
+import axios from "../../services/helper"
 import { useFormik } from "formik"
-import * as Yup from "yup"
+import { signUpSchema } from "../../schemas/authSchema"
 import "./signUp.scss"
-
-const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(3, "Username must be at least 3 characters!")
-    .max(16, "Username must be less than 16 characters!")
-    .required("Username is required!"),
-  email: Yup.string()
-    .email("Invalid email address!")
-    .required("Email is required!"),
-  password: Yup.string()
-    .min(8, "Password must be at least 8 characters!")
-    .max(20, "Password must be 8 to 20 characters!")
-    .required("Password is required!"),
-})
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -66,15 +50,15 @@ const SignUp = () => {
       username: "",
       password: "",
     },
-    validationSchema: validationSchema,
+    validationSchema: signUpSchema,
     onSubmit,
   })
 
   return (
     <div className="signup">
-      <Navbar />
       <div className="container">
         <div className="form-container">
+          <h2 className="signup-header">Sign up</h2>
           <form onSubmit={handleSubmit}>
             <input
               name="username"
@@ -133,9 +117,6 @@ const SignUp = () => {
             </div>
           </form>
         </div>
-      </div>
-      <div className="footer">
-        <Footer />
       </div>
     </div>
   )

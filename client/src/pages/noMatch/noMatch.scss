@@ -1,5 +1,6 @@
+@import "../../App.scss";
+
 .noMatch {
-  width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -10,32 +11,40 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 150px;
+    top: 9rem;
 
     h1 {
       font-size: 4rem;
       color: black;
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 1.9rem;
+
+      @include tablet {
+        font-size: 2rem;
+      }
     }
 
     p {
-      font-size: 28px;
+      font-size: 1.8rem;
       color: black;
       text-align: center;
-      margin-bottom: 20px;
-      padding: 10px;
+      margin-bottom: 1.2rem;
+      padding: 0.7rem;
+
+      @include tablet {
+        font-size: 1.3rem;
+      }
     }
 
     .btn {
-      width: 180px;
-      height: 50px;
-      padding: 8px;
+      width: 11rem;
+      height: 3.1rem;
+      padding: 0.6rem;
       border: none;
       outline: none;
-      border-radius: 5px;
+      border-radius: 0.25rem;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 1.2rem;
       color: white;
       text-align: center;
       cursor: pointer;

@@ -7,40 +7,44 @@
 
   .container {
     min-width: 60vw;
-    min-height: 60vh;
+    min-height: 75vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 150px auto 50px;
+    margin: 9rem auto 3.1rem;
     background-color: var(--primary-bg-color);
     border-radius: 0.8rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.5);
 
     @include mobile {
-      margin: 120px 50px;
+      margin: 7.5rem 3.1rem;
     }
 
     .form-container {
-      margin: 0 40px;
+      margin: 0 2.5rem;
+
+      .signup-header {
+        margin-bottom: 1rem;
+      }
 
       form {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 1.2rem;
 
         input {
-          width: 320px;
-          height: 50px;
+          width: 20rem;
+          height: 3.1rem;
           background-color: #908d8d;
           color: black;
           outline: none;
           border: none;
           border-radius: 5px;
-          padding: 10px;
-          text-indent: 10px;
+          padding: 0.7rem;
+          text-indent: 0.7rem;
 
           @include tablet {
-            width: 200px;
+            width: 12.5rem;
           }
 
           &::placeholder {
@@ -48,15 +52,15 @@
           }
 
           &.input-error {
-            border: 2px solid red;
+            border: 0.1rem solid red;
           }
         }
 
         .error {
-          padding-left: 10px;
+          padding-left: 0.7rem;
           color: red;
-          font-size: 0.9rem;
-          margin-top: -15px;
+          font-size: 0.8rem;
+          margin-top: -0.9rem;
 
           @include tablet {
             font-size: 0.8rem;
@@ -65,19 +69,19 @@
 
         .btn {
           button {
-            width: 320px;
-            height: 50px;
+            width: 20rem;
+            height: 3.1rem;
             outline: none;
             border: none;
-            border-radius: 5px;
-            padding: 8px;
+            border-radius: 0.25rem;
+            padding: 0.6rem;
             background-color: var(--btn-primary-color);
             color: var(--nav-txt-color);
-            font-size: 16px;
+            font-size: 1rem;
             cursor: pointer;
 
             @include tablet {
-              width: 200px;
+              width: 12.5rem;
             }
 
             &:disabled {

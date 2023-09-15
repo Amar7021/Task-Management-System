@@ -36,6 +36,11 @@ const Navbar = () => {
       theme: "colored",
     })
     navigate("/")
+    setShow(false)
+  }
+
+  const handleLinkClick = () => {
+    setShow(false)
   }
 
   return (
@@ -51,12 +56,13 @@ const Navbar = () => {
           {user ? (
             <>
               <li>
-                <span
+                <Link
+                  to="/"
                   className="links"
                   onClick={handleLogout}
                 >
                   Sign out
-                </span>
+                </Link>
               </li>
             </>
           ) : (
@@ -65,6 +71,7 @@ const Navbar = () => {
                 <Link
                   to="/"
                   className="links"
+                  onClick={handleLinkClick}
                 >
                   Home
                 </Link>
@@ -73,6 +80,7 @@ const Navbar = () => {
                 <Link
                   to="/signup"
                   className="links"
+                  onClick={handleLinkClick}
                 >
                   Sign up
                 </Link>
@@ -81,6 +89,7 @@ const Navbar = () => {
                 <Link
                   to="/signin"
                   className="links"
+                  onClick={handleLinkClick}
                 >
                   Sign in
                 </Link>
